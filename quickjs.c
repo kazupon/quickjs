@@ -60,10 +60,19 @@
 #define MALLOC_OVERHEAD  8
 #endif
 
-#if !defined(_WIN32)
+/**
+ * NOTE:
+ *  The below defines is shim to pass throgh for quickjs compilation.
+ *
+ *  WebAssembly itself only supports round-to-nearest.
+ *  It doesn't support any other rounding modes.
+ *  We must be aware of its constraints.
+ *  ref: https://github.com/WebAssembly/wasi-libc/issues/85
+ */
+/* #if !defined(_WIN32) */
 /* define it if printf uses the RNDN rounding mode instead of RNDNA */
-#define CONFIG_PRINTF_RNDN
-#endif
+/* #define CONFIG_PRINTF_RNDN */
+/* #endif */
 
 /* define to include Atomics.* operations which depend on the OS
    threads */
