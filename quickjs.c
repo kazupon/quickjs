@@ -69,14 +69,14 @@
  *  We must be aware of its constraints.
  *  ref: https://github.com/WebAssembly/wasi-libc/issues/85
  */
-/* #if !defined(_WIN32) */
+#if !defined(_WIN32) && !defined(__wasi__)
 /* define it if printf uses the RNDN rounding mode instead of RNDNA */
-/* #define CONFIG_PRINTF_RNDN */
-/* #endif */
+#define CONFIG_PRINTF_RNDN
+#endif
 
 /* define to include Atomics.* operations which depend on the OS
    threads */
-#if !defined(EMSCRIPTEN)
+#if !defined(EMSCRIPTEN) && !defined(__wasi__)
 #define CONFIG_ATOMICS
 #endif
 
